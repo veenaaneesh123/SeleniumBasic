@@ -114,6 +114,7 @@ public class PageUtilities {
         
 		default:
 						break;
+						
 		}
 		 return text;
 	}
