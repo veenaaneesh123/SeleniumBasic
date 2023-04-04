@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import PageObjectModel.HomePage;
 import Utility.DriverManager;
+import Utility.ExcelUtility;
 
 import org.testng.annotations.BeforeTest;
 
@@ -57,24 +58,9 @@ WebElement getvalue = driver.findElement(By.id("message-one"));
 
 String appvaluue = getvalue.getText();*/
 
-if(appvaluue.contains("hello"))
-
-{
-
-Assert.assertTrue(true);
-
+Assert.assertEquals(appvaluue, "Your Message : " + ExcelUtility.readIntData(0, 1));
 }
-
-else
-
-{
-
-Assert.fail("string comparsion failed");
-
-}
-
-}
-  @Test(priority = 1,enabled =true)
+  @Test(priority = 1,enabled =false)
 
 public void valueCheck2() throws InterruptedException
 

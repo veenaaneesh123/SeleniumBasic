@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import Utility.ExcelUtility;
 import Utility.PageUtilities;
 
 public class HomePage {
@@ -75,7 +76,8 @@ public void messageVerification() throws IOException
 
 inputform.click();
 
-textbox.sendKeys("hello");
+//textbox.sendKeys("hello");
+textbox.sendKeys(ExcelUtility.readIntData(0, 1));//to call from excel
 
 obj.screenshot();
 

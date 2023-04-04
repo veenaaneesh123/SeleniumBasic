@@ -1,45 +1,40 @@
 package TestNgClasses;
 
 import org.testng.annotations.Test;
-import PageObjectModel.CheckBoxPage;
+import org.testng.asserts.SoftAssert;
 import PageObjectModel.HomePage;
+import PageObjectModel.RadioButtonPage;
 import Utility.DriverManager;
-
 import org.testng.annotations.BeforeTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class CheckBoxCase {
+public class RadioButtonCase {
 	WebDriver driver;
 	DriverManager obj=new DriverManager();
 	String expectedURL="https://selenium.obsqurazone.com/index.php";
 	HomePage objHome;
-	CheckBoxPage objCheckBoxPage;
-	
+	RadioButtonPage objRadioBtn;
+	SoftAssert softassert;
   @Test
-  public void CheckBoxVerification() throws InterruptedException {
+  public void RadioButtonVerification() throws InterruptedException {
 	  objHome.inputFormlick();
-	  objCheckBoxPage.CheckBoxDemo();
-	  objCheckBoxPage.clickCheckBox();
-	  String s=objCheckBoxPage.getValue();
-	 
-	  if(s.contains("Check box is checked"))  
-	  	{
-		  Assert.assertTrue(true);
-	  	}
-	  else
-	  	{
-		  Assert.fail("COMPARISION FAILD");
-	  	}
+	  objRadioBtn.radioDemo();
+	  objRadioBtn.radiobtnclick();
+	  objRadioBtn.showValueclick();
+	  String acutualValue="Radio button 'Female' is checked";
+	  String expectedValue=objRadioBtn.getValues();
+	  softassert.assertEquals(acutualValue, expectedValue,"error");
+	  softassert.assertAll();
+	  
   }
-  
   @BeforeTest
   public void beforeTest() {
 	  obj.launchBrowser(expectedURL,"chrome");
 	  this.driver=obj.driver;
 	  objHome=new HomePage(driver);
-	  objCheckBoxPage=new CheckBoxPage(driver);
+	  objRadioBtn=new RadioButtonPage(driver);
+	  softassert=new SoftAssert();
 	  
   }
 

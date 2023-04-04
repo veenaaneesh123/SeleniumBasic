@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import Utility.DriverManager;
 import Utility.PageUtilities;
 
 public class CheckBoxPage {
@@ -27,6 +26,7 @@ public class CheckBoxPage {
 	@FindBy(id="message-one")
 	public WebElement getValue;
 	
+	
 	public void CheckBoxDemo() throws InterruptedException
 		{
 			objpage.click(checkBoxDemo);
@@ -43,6 +43,5 @@ public class CheckBoxPage {
 			return objpage.gettextValue(getValue);
 		}
 		
-
 	
 }
