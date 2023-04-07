@@ -139,6 +139,14 @@ public void screenshot() throws IOException {
 
     FileUtils.copyFile(SrcFile, DestFile);
 	}
+
+//public void windowHandling(WebDriver driver)
+
+//{
+	//String parentWindow=driver.getWindowHandle();
+	//handle=new 
+//}
+
 	
 }
 

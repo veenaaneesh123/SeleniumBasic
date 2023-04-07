@@ -7,6 +7,7 @@ import Utility.DriverManager;
 import Utility.ExcelUtility;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 
@@ -14,7 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class InitialClass {
+public class InitialClass 
+{
 	WebDriver driver;
 
 	DriverManager obj= new DriverManager();
@@ -24,15 +26,15 @@ public class InitialClass {
 	String expectedURL="https://selenium.obsqurazone.com/index.php";
 
 	HomePage objHome;
-  @Test(priority=1,enabled=true)
-
-public void valueCheck1() throws InterruptedException, IOException
+	
+  @Test(priority=1,enabled=true,dataProvider = "data-provider123")
+public void valueCheck1(String value) throws InterruptedException, IOException
 
 {//pageobject model with page factory
 
 //HomePage objHome=new HomePage(driver);
 
-objHome.messageVerification();
+objHome.messageVerification(value);//value for dataprovider
 
 String appvaluue=objHome.returntextvalue();
 
@@ -58,8 +60,13 @@ WebElement getvalue = driver.findElement(By.id("message-one"));
 
 String appvaluue = getvalue.getText();*/
 
-Assert.assertEquals(appvaluue, "Your Message : " + ExcelUtility.readIntData(0, 1));
+//Assert.assertEquals(appvaluue, "Your Message : " + ExcelUtility.readIntData(0, 1));"for excel read"
+Assert.assertEquals(appvaluue, "Your Message : " + value);
 }
+  
+  
+  
+  
   @Test(priority = 1,enabled =false)
 
 public void valueCheck2() throws InterruptedException
@@ -102,38 +109,40 @@ String totalvalue = getvalue.getText();*/
 
 if(totalvalue.contains("50"))
 
-{
-
-Assert.assertTrue(true);
-
-}
+	{
+	
+	Assert.assertTrue(true);
+	
+	}
 
 else
 
-{
-
-Assert.fail("comparsion failed");
-
-}
+	{
+	
+	Assert.fail("comparsion failed");
+	
+	}
 
 }
   
   @BeforeTest
-  public void beforeTest() {
+  public void beforeTest() 
 	  {
-
 		  obj.launchBrowser(expectedURL,"chrome");
-
-		  this.driver=obj.driver;
-
-		  objHome=new HomePage(driver);
-
-		  }
-  }
+	
+			  this.driver=obj.driver;
+	
+			  objHome=new HomePage(driver);
+	  }
 
   @AfterTest
-  public void afterTest() {
-	  obj.closeBrowser();
-  }
-
+  public void afterTest() 
+	  {
+		  obj.closeBrowser();
+	  }
+  @DataProvider (name = "data-provider123")
+  public Object[][] dpMethod()
+  {
+	 return new Object[][] {{"First-Value"}, {"Second-Value"}};
+  }  
 }

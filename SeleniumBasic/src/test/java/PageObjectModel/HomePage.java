@@ -68,7 +68,7 @@ inputform.click();
 
 }
 
-public void messageVerification() throws IOException
+public void messageVerification(String value) throws IOException
 
 {
 	
@@ -77,7 +77,8 @@ public void messageVerification() throws IOException
 inputform.click();
 
 //textbox.sendKeys("hello");
-textbox.sendKeys(ExcelUtility.readIntData(0, 1));//to call from excel
+//textbox.sendKeys(ExcelUtility.readIntData(0, 1));//to call from excel
+textbox.sendKeys(value);//for dataProvider
 
 obj.screenshot();
 
